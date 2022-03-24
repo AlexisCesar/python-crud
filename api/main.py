@@ -1,5 +1,5 @@
 from flask import *
-import json, time
+import json
 
 app = Flask(__name__)
 
@@ -7,21 +7,17 @@ app = Flask(__name__)
 def home_page():
     data_set = {
         'Page': 'Home', 
-        'Message': 'Successfully loaded the Home page',
-        'Timestramp': time.time()
+        'Message': 'Successfully loaded the Home page'
         }
     json_dump = json.dumps(data_set)
 
     return json_dump
 
-@app.route('/hello', methods=['GET'])
-def hello_page():
-    user_query = str(request.args.get('user')) # /hello?user=USER_NAME
-
+@app.route('/me/contacts', methods=['GET'])
+def home_page():
     data_set = {
-        'Page': 'Hello', 
-        'Message': f'Successfully got the request for {user_query}',
-        'Timestramp': time.time()
+        'Page': 'Home', 
+        'Message': 'Contacts...'
         }
     json_dump = json.dumps(data_set)
 
