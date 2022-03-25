@@ -34,6 +34,10 @@ class ContactRepository():
         column_names = [column[0] for column in self.__cursor.description]
         return dict(zip(column_names, record))
 
+    def update(self, contactId, first_name, last_name, email, blocked):
+        self.__cursor.execute(f'UPDATE dbo.Contact SET FirstName=\'{first_name}\', LastName=\'{last_name}\', Email=\'{email}\', Blocked=\'{blocked}\' WHERE Id = \'{contactId}\';')
+        self.__conn.commit()
+
     def delete(self, contactId):
         self.__cursor.execute(f'DELETE FROM dbo.Contact WHERE Id = \'{contactId}\';')
         self.__conn.commit()
