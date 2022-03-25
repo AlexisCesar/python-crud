@@ -34,3 +34,6 @@ class ContactRepository():
         column_names = [column[0] for column in self.__cursor.description]
         return dict(zip(column_names, record))
 
+    def delete(self, contactId):
+        self.__cursor.execute(f'DELETE FROM dbo.Contact WHERE Id = \'{contactId}\';')
+        self.__conn.commit()

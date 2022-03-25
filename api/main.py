@@ -21,12 +21,19 @@ def contacts():
 
         return Response("", status=201, mimetype='application/json')
 
-@app.route('/me/contacts/contact', methods=['GET'])
+@app.route('/me/contacts/contact', methods=['GET', 'DELETE'])
 def contact():
-    contact_id_query = str(request.args.get('id')) # endpoint: /me/contacts/contact?id=userIdGoesHere
-    contact = ContactRepository().findById(contact_id_query)
-    json_dump = json.dumps(contact)
-    return json_dump
+    if request.method == 'GET':
+        contact_id_query = str(request.args.get('id')) # endpoint: /me/contacts/contact?id=userIdGoesHere
+        contact = ContactRepository().findById(contact_id_query)
+        json_dump = json.dumps(contact)
+
+        return json_dump
+
+    elif request.method == 'DELETE':
+        contact_id_query = str(request.args.get('id'))
+        contact = ContactRepository().delete(contact_id_query)
+        return Response("", status=200, mimetype='application/json')
 
 if __name__ == '__main__':
     app.run(port=5566)
