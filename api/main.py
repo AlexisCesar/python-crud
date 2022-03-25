@@ -21,5 +21,12 @@ def contacts():
 
         return Response("", status=201, mimetype='application/json')
 
+@app.route('/me/contacts/contact', methods=['GET'])
+def contact():
+    contact_id_query = str(request.args.get('id')) # endpoint: /me/contacts/contact?id=userIdGoesHere
+    contact = ContactRepository().findById(contact_id_query)
+    json_dump = json.dumps(contact)
+    return json_dump
+
 if __name__ == '__main__':
     app.run(port=5566)

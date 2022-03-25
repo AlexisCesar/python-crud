@@ -27,3 +27,10 @@ class ContactRepository():
         for rec in records:
             data.append(dict(zip(column_names, rec)))
         return data
+
+    def findById(self, contactId):
+        self.__cursor.execute(f'SELECT * FROM dbo.Contact WHERE Id = \'{contactId}\';')
+        record = self.__cursor.fetchone()
+        column_names = [column[0] for column in self.__cursor.description]
+        return dict(zip(column_names, record))
+
