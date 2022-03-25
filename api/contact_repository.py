@@ -7,13 +7,17 @@ class ContactRepository():
         self.__cursor = self.__getConnectionCursor()
 
     def __getConnectionCursor(self):
-        conn = pyodbc.connect('Driver={SQL Server};'
+        self.__conn = pyodbc.connect('Driver={SQL Server};'
                               'Server=localhost,1433;'
                               'Database=PythonCrud;'
                               'UID=sa;'
                               'PWD=Database!2022;')
 
-        return conn.cursor()
+        return self.__conn.cursor()
+
+    def insert(self, first_name, last_name, email):
+        self.__cursor.execute(f"INSERT INTO dbo.Contact(Id, FirstName, LastName, Email, Blocked) VALUES(NEWID(), \'{first_name}\', \'{last_name}\', \'{email}\', 0);")
+        self.__conn.commit()
 
     def findAll(self):
         self.__cursor.execute('SELECT * FROM dbo.Contact;')
