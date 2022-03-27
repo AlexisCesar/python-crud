@@ -11,7 +11,7 @@ def contacts():
         
         json_dump = json.dumps(contacts)
 
-        return json_dump
+        return Response(json_dump, status=200, mimetype='application/json')
 
     elif request.method == 'POST':
         contacts = ContactRepository()
@@ -30,7 +30,7 @@ def contact():
         
         json_dump = json.dumps(contact)
 
-        return json_dump
+        return Response(json_dump, status=200, mimetype='application/json')
 
     elif request.method == 'DELETE':
         contact_id_query = str(request.args.get('id'))
