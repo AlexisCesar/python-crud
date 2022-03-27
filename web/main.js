@@ -1,9 +1,13 @@
 const express = require('express');
 const app = express();
-const path = require('path');
-const basePath = path.join(__dirname, 'public');
 const hostname = 'localhost';
 const port = 3000;
+
+const path = require('path');
+const basePath = path.join(__dirname, 'public');
+
+app.use('/js', express.static(path.join(__dirname, 'public/js')));
+app.use('/css', express.static(path.join(__dirname, 'public/css')));
 
 app.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
