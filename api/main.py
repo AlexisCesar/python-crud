@@ -1,8 +1,10 @@
 from contact_repository import ContactRepository
 from flask import *
+from flask_cors import CORS
 import json
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/me/contacts', methods=['GET', 'POST'])
 def contacts():

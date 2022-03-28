@@ -1,5 +1,20 @@
+window.onload = function() {
+    const userAction = async () => {
+        console.log("Entered.");
+        const response = await fetch('http://localhost:5566/me/contacts');
+        const myJson = await response.json();
+        console.log("Exited.");
+        alert("Received object:" + myJson);
+    }
+
+    userAction();
+}
+
+
 let myTable = document.getElementById("contactTable");
 
+
+//Static rows - test
 for (let i = 0; i < 10; i++) {
     let myRow = myTable.insertRow(-1);
 
@@ -16,8 +31,9 @@ for (let i = 0; i < 10; i++) {
 
     let updateButton = document.createElement("button");
     updateButton.innerHTML = "Update";
+    updateButton.value = i + 1;
     updateButton.onclick = function () {
-        alert("Update function called.");
+        alert(`Update function called.\nUpdating contact #${updateButton.value}`);
     };
     cell.appendChild(updateButton);
 
