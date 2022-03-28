@@ -13,3 +13,9 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+
+#addButton {
+  float: right;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}

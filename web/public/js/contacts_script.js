@@ -1,7 +1,3 @@
-function showAlert() {
-    alert('function called!')
-}
-
 let myTable = document.getElementById("contactTable");
 
 for (let i = 0; i < 10; i++) {
@@ -17,5 +13,22 @@ for (let i = 0; i < 10; i++) {
     cell.appendChild(document.createTextNode("blocked"));
 
     cell = myRow.insertCell(3);
-    cell.appendChild(document.createTextNode("UPDATE | DELETE | BLOCK"));
+
+    let updateButton = document.createElement("button");
+    updateButton.innerHTML = "Update";
+    updateButton.onclick = function () {
+        alert("Update function called.");
+    };
+    cell.appendChild(updateButton);
+
+    let deleteButton = document.createElement("button");
+    deleteButton.innerHTML = "Delete";
+    deleteButton.onclick = function () {
+        alert("Delete function called.");
+    };
+    cell.appendChild(deleteButton);
+}
+
+function addContact() {
+    alert("Add contact function called.");
 }
