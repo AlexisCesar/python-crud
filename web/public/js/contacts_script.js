@@ -23,7 +23,7 @@ function populateContactTable(jsonObject) {
         cell.appendChild(document.createTextNode(jsonObject[i].Email));
 
         cell = myRow.insertCell(2);
-        cell.appendChild(document.createTextNode(jsonObject[i].Blocked));
+        cell.appendChild(document.createTextNode(jsonObject[i].Blocked ? "Blocked" : "Unblocked"));
 
         cell = myRow.insertCell(3);
 
@@ -40,8 +40,8 @@ function populateContactTable(jsonObject) {
         deleteButton.onclick = function () {
             alert("Delete function called.");
         };
+        
         cell.appendChild(deleteButton);
-
     }
 }
 
