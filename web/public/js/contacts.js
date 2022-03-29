@@ -44,7 +44,3 @@ function populateContactTable(jsonObject) {
         cell.appendChild(deleteButton);
     }
 }
-
-function addContact() {
-    alert("Add contact function called.");
-}

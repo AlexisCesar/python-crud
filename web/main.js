@@ -20,3 +20,7 @@ app.get('/', (req, res) => {
 app.get('/contacts', (req, res) => {
     res.sendFile(`${basePath}/contacts.html`);
 });
+
+app.get('/contacts/add', (req, res) => {
+    res.sendFile(`${basePath}/add-contact.html`);
+});

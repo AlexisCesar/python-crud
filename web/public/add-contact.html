@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Add Contact</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    
+</head>
+<body>
+    <button onclick="location.href = '/contacts';">Return to Contacts</button>
+    <br>
+    <br>
+    <br>
+    <!--New contact form-->
+    <form>
+        <h2>Creating new contact</h2>
+        <h3>Contact informations:</h3>
+        First name: <input type="text" name="firstName" id="firstName" maxlength="50" placeholder="Ex.: Alexis">
+        <br><br>
+        Last name: <input type="text" name="lastName" id="lastName" maxlength="50" placeholder="Ex.: Almeida">
+        <br><br>
+        Email: <input type="email" name="email" id="email" maxlength="100" placeholder="Ex.: alexis@almeida.com">
+        <br><br>
+        Blocked: <input name="blocked" id="blocked" type="checkbox">
+        <br><br>
+    </form>
+    
+    <button onclick="submitFormData()">Create</button>
+
+    <div id="errorMessages">
+        <p style="color: rgb(179, 37, 37); font-size: 2em; visibility: hidden;" id="invalidData">Inserted data is invalid.</p>
+        <p style="color: rgb(179, 37, 37); font-size: 2em; visibility: hidden;" id="invalidEmail">Insert a valid email.</p>
+    </div>
+
+</body>
+<script type="text/javascript" src="/js/add-contact.js"></script>
+</html>
