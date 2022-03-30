@@ -1,15 +1,16 @@
 function submitFormData() {
     let newContact = {};
-    newContact.firstName = document.getElementById('firstName').value;
-    newContact.lastName = document.getElementById('lastName').value;
-    newContact.email = document.getElementById('email').value;
-    newContact.blocked = document.getElementById('blocked').checked ? true : false;
+    newContact.FirstName = document.getElementById('firstName').value;
+    newContact.LastName = document.getElementById('lastName').value;
+    newContact.Email = document.getElementById('email').value;
+    newContact.Blocked = document.getElementById('blocked').checked ? true : false;
     if(dataIsValid(newContact)) {
         document.getElementById('invalidData').style.visibility = 'hidden';
 
-        if(emailIsValid(newContact.email)) {
+        if(emailIsValid(newContact.Email)) {
             document.getElementById('invalidEmail').style.visibility = 'hidden';
             console.log('DATA IS VALID, SENDING REQUEST...');
+            insertContactOnDatabase(newContact);
             return;
         }
         
@@ -21,9 +22,9 @@ function submitFormData() {
 }
 
 function dataIsValid(dataObject) {
-    if(dataObject.firstName == '') return false;
-    if(dataObject.lastName == '') return false;
-    if(dataObject.email == '') return false;
+    if(dataObject.FirstName == '') return false;
+    if(dataObject.LastName == '') return false;
+    if(dataObject.Email == '') return false;
 
     return true;
 }
@@ -31,4 +32,17 @@ function dataIsValid(dataObject) {
 function emailIsValid(email) {
     if(/^[A-z0-9]+@[A-z0-9]+\.com\.?([a-z]+)?$/.test(email) == false) return false;
     return true;
+}
+
+function insertContactOnDatabase(contact) {
+    fetch("http://localhost:5566/me/contacts", {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(contact)
+    }).then(res => {
+        window.location.href = '/contacts';
+    }).catch(x => {
+        document.getElementById('apiError').style.visibility = 'visible';
+    });
+    
 }
