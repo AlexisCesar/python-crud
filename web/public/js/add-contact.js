@@ -32,7 +32,7 @@ function dataIsValid(dataObject) {
 }
 
 function emailIsValid(email) {
-    if(/^[A-z0-9]+@[A-z0-9]+\.com\.?([a-z]+)?$/.test(email) == false) return false;
+    if(/^[A-z0-9_.]+@[A-z0-9]+\.com\.?([a-z]+)?$/.test(email) == false) return false;
     return true;
 }
 
