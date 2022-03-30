@@ -31,14 +31,25 @@ function populateContactTable(jsonObject) {
         updateButton.innerHTML = "Update";
         updateButton.value = jsonObject[i].Id;
         updateButton.onclick = function () {
-            alert(`Update function called.\nUpdating contact of id: ${updateButton.value}`);
+            alert("Update function called.");
         };
         cell.appendChild(updateButton);
 
         let deleteButton = document.createElement("button");
         deleteButton.innerHTML = "Delete";
         deleteButton.onclick = function () {
-            alert("Delete function called.");
+            if(confirm(`Do you really want to delete this contact?\nContact: ${jsonObject[i].FirstName} ${jsonObject[i].LastName}`))
+            {
+                let contactId =  updateButton.value;
+                fetch(`http://localhost:5566/me/contacts/contact?id=${contactId}`, {
+                    method: "DELETE",
+                    headers: {'Content-Type': 'application/json'}
+                }).then(res => {
+                    window.location.reload();
+                }).catch(x => {
+                    alert("An error occured during contact exclusion!");
+                });
+            }
         };
         
         cell.appendChild(deleteButton);
