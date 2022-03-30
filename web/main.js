@@ -24,3 +24,7 @@ app.get('/contacts', (req, res) => {
 app.get('/contacts/add', (req, res) => {
     res.sendFile(`${basePath}/add-contact.html`);
 });
+
+app.get('/contacts/update', (req, res) => {
+    res.sendFile(`${basePath}/update-contact.html`);
+});

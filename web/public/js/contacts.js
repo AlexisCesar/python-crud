@@ -31,7 +31,7 @@ function populateContactTable(jsonObject) {
         updateButton.innerHTML = "Update";
         updateButton.value = jsonObject[i].Id;
         updateButton.onclick = function () {
-            alert("Update function called.");
+            window.location.href = `/contacts/update?id=${updateButton.value}`
         };
         cell.appendChild(updateButton);
 
