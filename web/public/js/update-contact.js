@@ -14,6 +14,7 @@ window.onload = function() {
             document.getElementById('firstName').value = receivedContact.FirstName;
             document.getElementById('lastName').value = receivedContact.LastName;
             document.getElementById('email').value = receivedContact.Email;
+            document.getElementById('birthDate').value = receivedContact.BirthDate;
             receivedContact.Blocked ? (document.getElementById('blocked').checked = true) : (document.getElementById('blocked').checked = false);
         }
     }
@@ -28,6 +29,7 @@ function submitFormData() {
     contactData.FirstName = document.getElementById('firstName').value;
     contactData.LastName = document.getElementById('lastName').value;
     contactData.Email = document.getElementById('email').value;
+    contactData.BirthDate = document.getElementById('birthDate').value;
     contactData.Blocked = document.getElementById('blocked').checked ? true : false;
     if(dataIsValid(contactData)) {
         document.getElementById('invalidData').style.visibility = 'hidden';
@@ -50,6 +52,7 @@ function dataIsValid(dataObject) {
     if(dataObject.FirstName == '') return false;
     if(dataObject.LastName == '') return false;
     if(dataObject.Email == '') return false;
+    if(dataObject.BirthDate == '') return false;
 
     return true;
 }

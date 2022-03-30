@@ -3,6 +3,7 @@ function submitFormData() {
     newContact.FirstName = document.getElementById('firstName').value;
     newContact.LastName = document.getElementById('lastName').value;
     newContact.Email = document.getElementById('email').value;
+    newContact.BirthDate = document.getElementById('birthDate').value;
     newContact.Blocked = document.getElementById('blocked').checked ? true : false;
     if(dataIsValid(newContact)) {
         document.getElementById('invalidData').style.visibility = 'hidden';
@@ -25,6 +26,7 @@ function dataIsValid(dataObject) {
     if(dataObject.FirstName == '') return false;
     if(dataObject.LastName == '') return false;
     if(dataObject.Email == '') return false;
+    if(dataObject.BirthDate == '') return false;
 
     return true;
 }

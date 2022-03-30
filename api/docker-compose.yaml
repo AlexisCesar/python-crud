@@ -1,11 +1,6 @@
 version: '2.1'
 services:
-
-  mssqldata:
-    image: "mcr.microsoft.com/mssql/server:2019-latest"
-    entrypoint: /bin/bash
-
-  mssql:
+  sql.data:
     image: "mcr.microsoft.com/mssql/server:2019-latest"
     ports:
       - 1433:1433
@@ -20,8 +15,5 @@ services:
     environment:
       ACCEPT_EULA: Y
       SA_PASSWORD: Database!2022
-    # don't use this if you don't want to persit data between docker up and down
-    volumes_from:
-      - mssqldata
 
 # docker-compose file from https://github.com/abrandaol-youtube/sqlserver-with-docker

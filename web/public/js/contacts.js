@@ -23,9 +23,12 @@ function populateContactTable(jsonObject) {
         cell.appendChild(document.createTextNode(jsonObject[i].Email));
 
         cell = myRow.insertCell(2);
-        cell.appendChild(document.createTextNode(jsonObject[i].Blocked ? "Blocked" : "Unblocked"));
+        cell.appendChild(document.createTextNode(jsonObject[i].BirthDate));
 
         cell = myRow.insertCell(3);
+        cell.appendChild(document.createTextNode(jsonObject[i].Blocked ? "Blocked" : "Unblocked"));
+
+        cell = myRow.insertCell(4);
 
         let updateButton = document.createElement("button");
         updateButton.innerHTML = "Update";

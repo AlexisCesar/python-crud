@@ -15,8 +15,8 @@ class ContactRepository():
 
         return self.__conn.cursor()
 
-    def insert(self, first_name, last_name, email):
-        self.__cursor.execute(f"INSERT INTO dbo.Contact(Id, FirstName, LastName, Email, Blocked) VALUES(NEWID(), \'{first_name}\', \'{last_name}\', \'{email}\', 0);")
+    def insert(self, first_name, last_name, email, birth_date):
+        self.__cursor.execute(f"INSERT INTO dbo.Contact(Id, FirstName, LastName, Email, BirthDate, Blocked) VALUES(NEWID(), \'{first_name}\', \'{last_name}\', \'{email}\', \'{birth_date}\', 0);")
         self.__conn.commit()
 
     def findAll(self):
@@ -34,8 +34,8 @@ class ContactRepository():
         column_names = [column[0] for column in self.__cursor.description]
         return dict(zip(column_names, record))
 
-    def update(self, contactId, first_name, last_name, email, blocked):
-        self.__cursor.execute(f'UPDATE dbo.Contact SET FirstName=\'{first_name}\', LastName=\'{last_name}\', Email=\'{email}\', Blocked=\'{blocked}\' WHERE Id = \'{contactId}\';')
+    def update(self, contactId, first_name, last_name, email, birth_date, blocked):
+        self.__cursor.execute(f'UPDATE dbo.Contact SET FirstName=\'{first_name}\', LastName=\'{last_name}\', Email=\'{email}\', BirthDate=\'{birth_date}\', Blocked=\'{blocked}\' WHERE Id = \'{contactId}\';')
         self.__conn.commit()
 
     def delete(self, contactId):
