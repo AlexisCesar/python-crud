@@ -1,5 +1,6 @@
 import pyodbc
 from model.Contact import Contact
+import re
 
 class ContactRepository():
 
@@ -15,12 +16,12 @@ class ContactRepository():
 
         return self.__conn.cursor()
 
-    def insert(self, first_name, last_name, email, birth_date):
-        self.__cursor.execute("INSERT INTO dbo.Contact(Id, FirstName, LastName, Email, BirthDate, Blocked) VALUES(NEWID(), ?, ?, ?, ?, 0);", first_name, last_name, email, birth_date)
+    def insert(self, contact: Contact):
+        self.__cursor.execute("INSERT INTO dbo.Contact(Id, FirstName, LastName, Email, BirthDate, Blocked) VALUES(NEWID(), ?, ?, ?, ?, ?);", contact.FirstName, contact.LastName, contact.Email, contact.BirthDate, contact.Blocked)
         self.__conn.commit()
 
     def findAll(self):
-        self.__cursor.execute('SELECT * FROM dbo.Contact;')
+        self.__cursor.execute('SELECT * FROM dbo.Contact ORDER BY FirstName;')
         records = self.__cursor.fetchall()
         data = []
         column_names = [column[0] for column in self.__cursor.description]
@@ -31,13 +32,19 @@ class ContactRepository():
     def findById(self, contactId):
         self.__cursor.execute('SELECT * FROM dbo.Contact WHERE Id = ?;', contactId)
         record = self.__cursor.fetchone()
+
+        if record == None:
+            return None
+        
         column_names = [column[0] for column in self.__cursor.description]
         return dict(zip(column_names, record))
 
-    def update(self, contactId, first_name, last_name, email, birth_date, blocked):
-        self.__cursor.execute('UPDATE dbo.Contact SET FirstName=?, LastName=?, Email=?, BirthDate=?, Blocked=? WHERE Id = ?;', first_name, last_name, email, birth_date, blocked, contactId)
+    def update(self, contactId, contact: Contact):
+        affectedRows = self.__cursor.execute('UPDATE dbo.Contact SET FirstName=?, LastName=?, Email=?, BirthDate=?, Blocked=? WHERE Id = ?;', contact.FirstName, contact.LastName, contact.Email, contact.BirthDate, contact.Blocked, contactId).rowcount
         self.__conn.commit()
+        return affectedRows
 
     def delete(self, contactId):
-        self.__cursor.execute('DELETE FROM dbo.Contact WHERE Id = ?;', contactId)
+        affectedRows = self.__cursor.execute('DELETE FROM dbo.Contact WHERE Id = ?;', contactId).rowcount
         self.__conn.commit()
+        return affectedRows
