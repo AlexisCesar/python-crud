@@ -1,53 +1,69 @@
 from contact_repository import ContactRepository
-from flask import *
-from flask_cors import CORS
-import json
+from typing import Optional
+from fastapi import FastAPI, status, HTTPException
+from model.Contact import Contact
+from fastapi.middleware.cors import CORSMiddleware
+import uvicorn
+import re
 
-app = Flask(__name__)
-CORS(app)
+uuid_re = re.compile("^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$")
 
-@app.route('/me/contacts', methods=['GET', 'POST'])
-def contacts():
-    if request.method == 'GET':
-        contacts = ContactRepository().findAll()
-        
-        json_dump = json.dumps(contacts)
+app = FastAPI()
 
-        return Response(json_dump, status=200, mimetype='application/json')
-
-    elif request.method == 'POST':
-        contacts = ContactRepository()
-
-        req_body = request.get_json(force=True)
-        contacts.insert(req_body['FirstName'], req_body['LastName'], req_body['Email'], req_body['BirthDate'])
-
-        return Response("", status=201, mimetype='application/json')
-
-@app.route('/me/contacts/contact', methods=['GET', 'DELETE', 'PUT'])
-def contact():
-    if request.method == 'GET':
-        contact_id_query = str(request.args.get('id'))
-
-        contact = ContactRepository().findById(contact_id_query)
-        
-        json_dump = json.dumps(contact)
-
-        return Response(json_dump, status=200, mimetype='application/json')
-
-    elif request.method == 'DELETE':
-        contact_id_query = str(request.args.get('id'))
-
-        ContactRepository().delete(contact_id_query)
-        
-        return Response("", status=200, mimetype='application/json')
-    
-    elif request.method == 'PUT':
-        contact_id_query = str(request.args.get('id'))
-        
-        req_body = request.get_json(force=True)
-        ContactRepository().update(contact_id_query, req_body['FirstName'], req_body['LastName'], req_body['Email'], req_body['BirthDate'], req_body['Blocked'])
-
-        return Response("", status=200, mimetype='application/json')
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 if __name__ == '__main__':
-    app.run(port=5566)
+    uvicorn.run(app, host='127.0.0.1', port=5566)
+
+
+@app.post("/me/contacts", status_code=status.HTTP_201_CREATED)
+def insert_contact(contact: Contact):
+    repo = ContactRepository()
+    repo.insert(contact)
+    return ""
+
+
+@app.get("/me/contacts", status_code=status.HTTP_200_OK)
+def get_all():
+    repo = ContactRepository()
+    contacts = repo.findAll()
+    return contacts
+
+
+@app.get("/me/contacts/contact", status_code=status.HTTP_200_OK)
+def get_all(id: Optional[str] = None):
+    if id == None or not uuid_re.match(id):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail='Invalid id.')
+    repo = ContactRepository()
+    contact = repo.findById(id)
+    if contact == None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Contact not found.')
+    return contact
+
+
+@app.delete("/me/contacts/contact", status_code=status.HTTP_204_NO_CONTENT)
+def get_all(id: Optional[str] = None):
+    if id == None or not uuid_re.match(id):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail='Invalid id.')
+    repo = ContactRepository()
+    affectedRows = repo.delete(id)
+    if affectedRows == 0:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Contact not found.')
+    return ""
+
+
+@app.put("/me/contacts/contact", status_code=status.HTTP_204_NO_CONTENT)
+def get_all(contact: Contact, id: Optional[str] = None):
+    if id == None or not uuid_re.match(id):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail='Invalid id.')
+    repo = ContactRepository()
+    affectedRows = repo.update(id, contact)
+    if affectedRows == 0:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Contact not found.')
+    return ""
