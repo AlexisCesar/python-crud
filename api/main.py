@@ -37,7 +37,7 @@ def get_all():
 
 
 @app.get("/me/contacts/contact", status_code=status.HTTP_200_OK)
-def get_all(id: Optional[str] = None):
+def get_by_id(id: Optional[str] = None):
     if id == None or not uuid_re.match(id):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail='Invalid id.')
     repo = ContactRepository()
@@ -48,7 +48,7 @@ def get_all(id: Optional[str] = None):
 
 
 @app.delete("/me/contacts/contact", status_code=status.HTTP_204_NO_CONTENT)
-def get_all(id: Optional[str] = None):
+def delete(id: Optional[str] = None):
     if id == None or not uuid_re.match(id):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail='Invalid id.')
     repo = ContactRepository()
@@ -59,7 +59,7 @@ def get_all(id: Optional[str] = None):
 
 
 @app.put("/me/contacts/contact", status_code=status.HTTP_204_NO_CONTENT)
-def get_all(contact: Contact, id: Optional[str] = None):
+def update(contact: Contact, id: Optional[str] = None):
     if id == None or not uuid_re.match(id):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail='Invalid id.')
     repo = ContactRepository()
