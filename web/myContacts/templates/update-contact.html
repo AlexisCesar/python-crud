@@ -1,20 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Add Contact</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %} MyContacts! - Update {% endblock %}
+
+{% block content %}
+    {% load static %}
     <button onclick="location.href = '/contacts';">Return to Contacts</button>
     <br>
     <br>
     <br>
-    <!--New contact form-->
+    <!--Update contact form-->
     <form>
-        <h2>Creating new contact</h2>
+        <h2>Updating contact</h2>
         <h3>Contact informations:</h3>
         First name: <input type="text" name="firstName" id="firstName" maxlength="50" placeholder="Ex.: Alexis">
         <br><br>
@@ -27,14 +23,13 @@
         Blocked: <input name="blocked" id="blocked" type="checkbox">
         <br><br>
     </form>
-    
-    <button onclick="submitFormData()">Create</button>
+
+    <button onclick="submitFormData()">Update</button>
 
     <div id="errorMessages">
         <p style="color: rgb(179, 37, 37); font-size: 2em; visibility: hidden;" id="invalidData">Inserted data is invalid.</p>
         <p style="color: rgb(179, 37, 37); font-size: 2em; visibility: hidden;" id="invalidEmail">Insert a valid email.</p>
-        <p style="color: rgb(179, 37, 37); font-size: 2em; visibility: hidden;" id="apiError">An error occured during contact creation.</p>
+        <p style="color: rgb(179, 37, 37); font-size: 2em; visibility: hidden;" id="apiError">An error occured during contact update.</p>
     </div>
-</body>
-<script type="text/javascript" src="/js/add-contact.js"></script>
-</html>
+    <script src="{% static 'myContacts/contacts/js/update-contact.js' %}"></script>
+{% endblock %}

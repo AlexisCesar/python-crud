@@ -1,0 +1,11 @@
+{% block navbar %} 
+    {% load static %}
+    <link rel='stylesheet' type='text/css' media='screen' href="{% static 'myContacts/navbar/css/style.css' %}">
+    <div class="navbar">
+        <a href="/">HOME</a>
+        |
+        <a href="{% url 'contacts' %}">CONTACTS</a>
+        |
+        <a href="{% url 'add_contact' %}">ADD A NEW CONTACT</a>
+    </div>
+{% endblock %}
