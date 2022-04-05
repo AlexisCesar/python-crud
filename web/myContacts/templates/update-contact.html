@@ -25,9 +25,9 @@
         <button onclick="submitFormData()" class="btn btn-success">Update</button>
 
         <div id="errorMessages">
-            <p style="color: rgb(179, 37, 37); font-size: 2em; visibility: hidden;" id="invalidData">Inserted data is invalid.</p>
-            <p style="color: rgb(179, 37, 37); font-size: 2em; visibility: hidden;" id="invalidEmail">Insert a valid email.</p>
-            <p style="color: rgb(179, 37, 37); font-size: 2em; visibility: hidden;" id="apiError">An error occured during contact update.</p>
+            <div style="font-size: 1em; visibility: hidden;" id="invalidData" class="alert alert-danger mt-3">Inserted data is invalid.</div>
+            <div style="font-size: 1em; visibility: hidden;" id="invalidEmail" class="alert alert-danger mt-3">Insert a valid email.</div>
+            <div style="font-size: 1em; visibility: hidden;" id="apiError" class="alert alert-danger mt-3">An error occured during contact creation.</div>
         </div>
     </div>
     <script src="{% static 'myContacts/contacts/js/update-contact.js' %}"></script>
