@@ -4,32 +4,31 @@
 
 {% block content %}
     {% load static %}
-    <button onclick="location.href = '/contacts';" style="margin-top: 30px;">Return to Contacts</button>
-    <br>
-    <br>
-    <br>
-    <!--New contact form-->
-    <form>
-        <h2>Creating new contact</h2>
-        <h3>Contact informations:</h3>
-        First name: <input type="text" name="firstName" id="firstName" maxlength="50" placeholder="Ex.: Alexis">
-        <br><br>
-        Last name: <input type="text" name="lastName" id="lastName" maxlength="50" placeholder="Ex.: Almeida">
-        <br><br>
-        Email: <input type="email" name="email" id="email" maxlength="100" placeholder="Ex.: alexis@almeida.com">
-        <br><br>
-        Birth date: <input type="date" name="birthDate" id="birthDate" maxlength="50" placeholder="Ex.: 1999-01-01">
-        <br><br>
-        Blocked: <input name="blocked" id="blocked" type="checkbox">
-        <br><br>
-    </form>
-    
-    <button onclick="submitFormData()">Create</button>
+    <div class="ms-3">
+        <button onclick="location.href = '/contacts';" class="btn btn-primary mt-5">Return to Contacts</button>
+        <!--New contact form-->
+        <form class="mt-2">
+            <p class="fs-3">Creating new contact</p>
+            <p class="fs-5">Contact informations:</p>
+            First name: <input type="text" name="firstName" id="firstName" maxlength="50" placeholder="Ex.: Alexis">
+            <br><br>
+            Last name: <input type="text" name="lastName" id="lastName" maxlength="50" placeholder="Ex.: Almeida">
+            <br><br>
+            Email: <input type="email" name="email" id="email" maxlength="100" placeholder="Ex.: alexis@almeida.com">
+            <br><br>
+            Birth date: <input type="date" name="birthDate" id="birthDate" maxlength="50" placeholder="Ex.: 1999-01-01">
+            <br><br>
+            Blocked: <input name="blocked" id="blocked" type="checkbox">
+            <br><br>
+        </form>
+        
+        <button onclick="submitFormData()" class="btn btn-success">Create</button>
 
-    <div id="errorMessages">
-        <p style="color: rgb(179, 37, 37); font-size: 2em; visibility: hidden;" id="invalidData">Inserted data is invalid.</p>
-        <p style="color: rgb(179, 37, 37); font-size: 2em; visibility: hidden;" id="invalidEmail">Insert a valid email.</p>
-        <p style="color: rgb(179, 37, 37); font-size: 2em; visibility: hidden;" id="apiError">An error occured during contact creation.</p>
+        <div id="errorMessages">
+            <p style="color: rgb(179, 37, 37); font-size: 2em; visibility: hidden;" id="invalidData">Inserted data is invalid.</p>
+            <p style="color: rgb(179, 37, 37); font-size: 2em; visibility: hidden;" id="invalidEmail">Insert a valid email.</p>
+            <p style="color: rgb(179, 37, 37); font-size: 2em; visibility: hidden;" id="apiError">An error occured during contact creation.</p>
+        </div>
     </div>
     <script src="{% static 'myContacts/contacts/js/add-contact.js' %}"></script>
 {% endblock %}

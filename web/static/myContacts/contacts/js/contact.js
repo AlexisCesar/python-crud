@@ -36,6 +36,7 @@ function populateContactTable(jsonObject) {
         updateButton.onclick = function () {
             window.location.href = `/contacts/update?id=${updateButton.value}`
         };
+        updateButton.setAttribute("class", "btn btn-primary");
         cell.appendChild(updateButton);
 
         let deleteButton = document.createElement("button");
@@ -54,7 +55,7 @@ function populateContactTable(jsonObject) {
                 });
             }
         };
-        
+        deleteButton.setAttribute("class", "btn btn-primary ms-2");
         cell.appendChild(deleteButton);
     }
 }
