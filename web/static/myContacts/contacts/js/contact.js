@@ -1,10 +1,12 @@
 window.onload = function() {
     const userAction = async () => {
+        document.getElementById('loading').style.visibility = 'visible';
         const response = await fetch('http://localhost:5566/me/contacts');
         const receivedContacts = await response.json();
         if(receivedContacts != undefined) {
             populateContactTable(receivedContacts);
         }
+        document.getElementById('loading').style.visibility = 'hidden';
     }
 
     userAction();
@@ -36,6 +38,7 @@ function populateContactTable(jsonObject) {
         updateButton.onclick = function () {
             window.location.href = `/contacts/update?id=${updateButton.value}`
         };
+        updateButton.setAttribute("class", "btn btn-primary");
         cell.appendChild(updateButton);
 
         let deleteButton = document.createElement("button");
@@ -54,7 +57,7 @@ function populateContactTable(jsonObject) {
                 });
             }
         };
-        
+        deleteButton.setAttribute("class", "btn btn-primary ms-2");
         cell.appendChild(deleteButton);
     }
 }

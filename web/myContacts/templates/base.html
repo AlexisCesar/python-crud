@@ -3,10 +3,13 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>MyContacts</title>
+    <title>{% block title %}Page Title{% endblock %}</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 </head>
 <body>
-    <h3>Hello! You may wanna visit the <button onclick="location.href = '/contacts';">Contacts Page</button>.</h3>
+    {% include 'navbar.html' %}
+    {% block content %}
+
+    {% endblock %}
 </body>
 </html>

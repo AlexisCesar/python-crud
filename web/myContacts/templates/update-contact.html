@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %} MyContacts! - Update {% endblock %}
+
+{% block content %}
+    {% load static %}
+    <div class="ms-3">
+        <button onclick="location.href = '/contacts';" class="btn btn-primary mt-5">Return to Contacts</button>
+        <!--Update contact form-->
+        <form class="mt-2">
+            <p class="fs-3">Updating contact</p>
+            <p class="fs-5">Contact informations:</p>
+            First name: <input type="text" name="firstName" id="firstName" maxlength="50" placeholder="Ex.: Alexis">
+            <br><br>
+            Last name: <input type="text" name="lastName" id="lastName" maxlength="50" placeholder="Ex.: Almeida">
+            <br><br>
+            Email: <input type="email" name="email" id="email" maxlength="100" placeholder="Ex.: alexis@almeida.com">
+            <br><br>
+            Birth date: <input type="date" name="birthDate" id="birthDate" maxlength="50" placeholder="Ex.: 1999-01-01">
+            <br><br>
+            Blocked: <input name="blocked" id="blocked" type="checkbox">
+            <br><br>
+        </form>
+
+        <button onclick="submitFormData()" class="btn btn-success">Update</button>
+
+        <div id="errorMessages">
+            <div style="font-size: 1em; visibility: hidden;" id="invalidData" class="alert alert-danger mt-3">Inserted data is invalid.</div>
+            <div style="font-size: 1em; visibility: hidden;" id="invalidEmail" class="alert alert-danger mt-3">Insert a valid email.</div>
+            <div style="font-size: 1em; visibility: hidden;" id="apiError" class="alert alert-danger mt-3">An error occured during contact creation.</div>
+        </div>
+    </div>
+    <script src="{% static 'myContacts/contacts/js/update-contact.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %} MyContacts! - Contacts {% endblock %}
+
+{% block content %}
+    {% load static %}
+    <div class="ms-2 mt-2">
+        <link rel='stylesheet' type='text/css' media='screen' href="{% static 'shared/bootstrap.min.css' %}">
+        <h1>Contacts:</h1>
+        <div class="spinner-border text-primary" role="status" id="loading">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <!--Add contact button-->
+        <button id="addButton" onclick="location.href = '/contacts/add';" class="btn btn-success float-end me-5">Add Contact</button>
+        <!--Contacts table-->
+        <table id="contactTable" class="table table-hover">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Birth Date</th>
+                <th>Status</th>
+                <th>Operation</th>
+            </tr>
+            <!--Mocked-->
+            <!-- <tr>
+                <td>Alexis</td>
+                <td>Alexis</td>
+                <td>Alexis</td>
+                <td>Alexis</td>
+                <td>Alexis</td>
+            </tr> -->
+        </table>
+        <script src="{% static 'myContacts/contacts/js/contact.js' %}"></script>
+    </div>
+{% endblock %}
