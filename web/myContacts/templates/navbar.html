@@ -1,10 +1,11 @@
 {% block navbar %} 
     {% load static %}
     <link rel='stylesheet' type='text/css' media='screen' href="{% static 'shared/bootstrap.min.css' %}">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid collapse navbar-collapse" id="navbarContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item table-hover">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand ms-2" href="/">MyContacts!</a>
+        <div class="container-fluid" id="navbarContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
                     <a class="nav-link active" href="/">Home</a>
                 </li>
                 <li class="nav-item">

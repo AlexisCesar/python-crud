@@ -3,7 +3,7 @@
 {% block title %} MyContacts! - Index {% endblock %}
 
 {% block content %}
-<div class="mt-5">
-    <h3 class="fs-3">Hello! You may wanna visit the <button onclick="location.href = '/contacts';" class="btn btn-primary">Contacts Page</button>.</h3>
+<div class="ms-2 mt-4">
+    <h1>Hello! You may wanna visit the <a href="{% url 'contacts' %}" class="link-primary">Contacts Page</a></h1>
 </div>
 {% endblock %}

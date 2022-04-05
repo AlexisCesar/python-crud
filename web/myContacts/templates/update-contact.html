@@ -4,12 +4,11 @@
 
 {% block content %}
     {% load static %}
-    <div class="ms-3">
-        <button onclick="location.href = '/contacts';" class="btn btn-primary mt-5">Return to Contacts</button>
-        <!--Update contact form-->
+    <div class="ms-2 mt-4">
+        <!--New contact form-->
         <form class="mt-2">
-            <p class="fs-3">Updating contact</p>
-            <p class="fs-5">Contact informations:</p>
+            <h1>Updating contact</h1>
+            <p class="fs-5 mt-5">Contact informations:</p>
             First name: <input type="text" name="firstName" id="firstName" maxlength="50" placeholder="Ex.: Alexis">
             <br><br>
             Last name: <input type="text" name="lastName" id="lastName" maxlength="50" placeholder="Ex.: Almeida">
@@ -21,7 +20,7 @@
             Blocked: <input name="blocked" id="blocked" type="checkbox">
             <br><br>
         </form>
-
+        <button onclick="location.href = '/contacts';" class="btn btn-primary">Return to Contacts</button>
         <button onclick="submitFormData()" class="btn btn-success">Update</button>
 
         <div id="errorMessages">
