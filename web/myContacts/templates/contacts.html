@@ -7,6 +7,9 @@
     <div class="ms-2 mt-2">
         <link rel='stylesheet' type='text/css' media='screen' href="{% static 'shared/bootstrap.min.css' %}">
         <h1>Contacts:</h1>
+        <div class="spinner-border text-primary" role="status" id="loading">
+            <span class="visually-hidden">Loading...</span>
+        </div>
         <!--Add contact button-->
         <button id="addButton" onclick="location.href = '/contacts/add';" class="btn btn-success float-end me-5">Add Contact</button>
         <!--Contacts table-->

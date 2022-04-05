@@ -1,10 +1,12 @@
 window.onload = function() {
     const userAction = async () => {
+        document.getElementById('loading').style.visibility = 'visible';
         const response = await fetch('http://localhost:5566/me/contacts');
         const receivedContacts = await response.json();
         if(receivedContacts != undefined) {
             populateContactTable(receivedContacts);
         }
+        document.getElementById('loading').style.visibility = 'hidden';
     }
 
     userAction();
